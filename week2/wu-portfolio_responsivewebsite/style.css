@@ -1,0 +1,91 @@
+/* Shared styles */
+* { box-sizing: border-box; }
+body {
+    margin: 0;
+    background-color: #f3f2ed;
+    color: #222;
+}
+.header-content, main, .intro, .about, .contact {
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
+}
+header { background-color: #e7dfd1; }
+.header-content { padding: 15px 0; }
+h1, h2, h3, li { font-family: "DM Serif Display", Georgia, serif; }
+h3 { margin: 10px 0; }
+ul {
+    padding-left: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+li { padding: 6px 0; font-size: 13px; }
+.intro { padding: 40px 0; }
+h1 {
+    font-size: 38px;
+    line-height: 1.1;
+    margin: 15px 0;
+    color: #75654f;
+}
+h2 { font-size: 28px; line-height: 1.2; margin: 15px 0; }
+.p-regular {
+    font-family: "Space Grotesk", Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.8;
+}
+.p-label {
+    font-family: "Space Grotesk", Arial, sans-serif;
+    font-size: 11px;
+    line-height: 1.6;
+    color: #666;
+}
+.work {
+    display: flex;
+    flex-direction: column-reverse;
+    padding: 30px 0;
+    border-top: 1px solid #ccc;
+}
+.work img { width: 100%; display: block; }
+.work-text { padding-bottom: 15px; }
+.about { padding: 40px 0; }
+.about .p-regular { max-width: 750px; }
+.contact {
+    background-color: #e7dfd1;
+    padding: 25px;
+    margin-bottom: 40px;
+    overflow-wrap: break-word;
+}
+/* Tablet: image above text */
+@media (min-width: 744px) {
+    h1, h2, h3, li { font-family: "Space Grotesk", Arial, sans-serif; }
+    header { background-color: #e0e1dd; }
+    .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    ul { flex-direction: row; }
+    li { padding: 0 10px; border-right: 1px solid #999; }
+    li:last-child { border: none; }
+    .intro { padding: 55px 0; text-align: center; }
+    h1 { font-size: 52px; color: #5b6269; }
+    .work { flex-direction: column; padding: 35px 0; }
+    .work-text { max-width: 700px; margin: auto; padding: 20px 0 0; }
+    .contact { background-color: #e0e1dd; }
+}
+/* Desktop: one complete project per row */
+@media (min-width: 960px) {
+    header { background-color: #d6dfe6; }
+    .intro { text-align: left; padding: 60px 0; }
+    h1 { font-size: 64px; color: #222; }
+    .work {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 45px 0;
+    }
+    .work img { width: 52%; }
+    .work-text { width: 42%; margin: 0; padding: 0; }
+    .contact { background-color: #d6dfe6; }
+}
