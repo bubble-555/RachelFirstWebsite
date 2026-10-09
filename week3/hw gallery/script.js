@@ -20,25 +20,34 @@ let thumb4 = document.getElementById("thumb4");
         bigImage.src = thumb4.src;
     });
 
-let timer = setInterval(() => {
+let timer
 
-    if (bigImage.src === thumb1.src) {
-        bigImage.src = thumb2.src;
-    }
-    else if (bigImage.src === thumb2.src) {
-        bigImage.src = thumb3.src;
-    }
-    else if (bigImage.src === thumb3.src) {
-        bigImage.src = thumb4.src;
-    }
-   else {
-        bigImage.src = thumb1.src;
-   }
-
-
-
-}, 3000); // Change image every 3 seconds
+let startTimer = () => {
+    timer = setInterval(() => {
+        if (bigImage.src === thumb1.src) {
+            bigImage.src = thumb2.src;
+        }
+        else if (bigImage.src === thumb2.src) {
+            bigImage.src = thumb3.src;
+        }
+        else if (bigImage.src === thumb3.src) {
+            bigImage.src = thumb4.src;
+        }
+        else {
+                bigImage.src = thumb1.src;
+        }
+    }, 3000); // Change image every 3 seconds
+    
+}
 
 pauseButton.addEventListener("click", () => {
     clearInterval(timer);
+});
+
+window.addEventListener("load", () => {
+    startTimer();
+});
+
+playButton.addEventListener("click", () => {
+    startTimer();
 });
