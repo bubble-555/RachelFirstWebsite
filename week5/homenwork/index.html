@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animation Process</title>
+
+  <style>
+    body {
+    background-color: #f2efe7;
+    color: #333333;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    }
+
+    main {
+    width: 90%;
+    margin: 30px auto;
+    }
+    h1 {
+      font-size: 32px;
+    }
+
+    h2 {
+      margin-top: 40px;
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    img {
+    display: block;
+    width: 100%;
+    height: auto;
+    }
+
+    iframe {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      border: none;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <h1>Tidal Orbit</h1>
+    <p>By Zhenlian Wu</p>
+
+    <p>
+      I created an animation with two moving shapes.
+      One moves in a circle, and the other moves up and down.
+      These images show how my work developed.
+    </p>
+
+    <h2>01 — Starting with Circles</h2>
+    <img src="images/01.png" alt="Two circles and a circular path">
+    <p>
+      I started with two circles on a dark background.
+      I added a circular path to plan the movement.
+    </p>
+
+    <h2>02 — Circular Motion</h2>
+    <img src="images/02.png" alt="A circle moving around the path">
+    <p>
+      I used sine and cosine to move the turquoise circle
+      around the path. The orange circle stayed still.
+    </p>
+
+    <h2>03 — Moving Up and Down</h2>
+    <img src="images/03.png" alt="The orange circle below the center">
+    <p>
+      I used sine to move the orange circle up and down.
+      At this stage, both movements used the same frequency.
+    </p>
+
+    <h2>04 — Different Rhythms</h2>
+    <img src="images/04.png" alt="The circles moving with different rhythms">
+    <p>
+      I changed the frequency and starting phase of the
+      up-and-down movement. The two movements no longer
+      stayed synchronized.
+    </p>
+
+    <h2>05 — Organic Shapes</h2>
+    <img src="images/05.png" alt="Shapes with irregular edges">
+    <p>
+      I used Perlin noise to change the outlines.
+      The shapes became less regular and more organic.
+    </p>
+
+    <h2>06 — Testing Glow</h2>
+    <img src="images/06.png" alt="Shapes with colored glows">
+    <p>
+      I added soft glows around the shapes.
+      I thought the edges looked too blurry, so I tried
+      a different style.
+    </p>
+
+    <h2>07 — Final Changes</h2>
+    <img src="images/07.png" alt="Red and purple shapes with contour lines">
+    <p>
+      I changed the background and colors, added lines
+      inside the shapes, and slowed the movements.
+      I preferred this clearer version.
+    </p>
+
+    <h2>Final Animation</h2>
+    <p>
+      The purple shape moves in a circle, while the red
+      shape moves up and down. They use different frequencies,
+      and Perlin noise slowly changes their outlines.
+    </p>
+
+    <iframe
+      src="animation.html"
+      title="Final animation">
+    </iframe>
+  </main>
+</body>
+</html>
