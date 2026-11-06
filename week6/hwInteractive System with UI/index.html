@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mutating Bodies</title>
+  <style>
+    body { margin:0; background:#19171b; color:#eee2dc; font-family:Arial,sans-serif; line-height:1.6; }
+    main { max-width:900px; margin:auto; padding:35px 20px 75px; }
+    h1 { font-size:54px; font-weight:400; margin:18px 0 5px; }
+    h2 { margin-top:45px; font-weight:400; border-top:1px solid #564249; padding-top:22px; }
+    p,li { color:#d2beba; }
+    .small { font-family:monospace; font-size:12px; color:#bb888d; }
+    iframe { display:block; width:100%; height:665px; border:1px solid #67454f; background:#151115; }
+    img { width:100%; max-width:700px; display:block; background:#242126; border:1px solid #67454f; }
+    a { color:#e7a8ac; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Mutating Bodies</h1>
+  <p>What happens when one cell stops following the rules of the body?</p>
+
+  <h2>01 / Interactive System</h2>
+  <!-- This is the p5.js Editor sketch, as requested by the assignment. -->
+  <iframe title="Mutating Bodies p5.js sketch"
+    src="https://editor.p5js.org/bubble-555/full/xqNbW7cfC"
+    allow="autoplay" loading="eager"></iframe>
+  <p class="small">If the embed does not load, <a href="sketch_local.html" target="_blank">open the local version</a>.</p>
+  <p>The tissue runs by itself. Mouse buttons change the mutation rate or regenerate the tissue.
+     Click Enable Sound to hear a short note when a cell mutates.</p>
+
+  <h2>02 / Intent</h2>
+  <p>I wanted to explore how simple rules between individual cells can change an entire body.
+     The project is inspired by contact inhibition, a biological process in which normal cells
+     reduce division when they are crowded.</p>
+
+  <h2>03 / UML Diagram</h2>
+  <img src="UML.svg" alt="UML showing the Cell and Tissue classes and their relationship">
+  <p>A Tissue contains many Cell objects. Each Cell checks its neighbors, may divide,
+     and can spontaneously mutate.</p>
+
+  <h2>04 / System Rules</h2>
+  <ol>
+    <li>Normal cells stop dividing when they have too many neighbors.</li>
+    <li>Each normal cell has a small chance of mutating.</li>
+    <li>Mutated cells can divide when crowded. Their children inherit mutation.</li>
+    <li>Overlapping cells push each other apart, changing the tissue shape.</li>
+    <li>When all cells become mutated, the tissue fades into <b>Tissue Collapse</b>.</li>
+  </ol>
+
+  <h2>05 / Process &amp; Emergence</h2>
+  <p>First, I studied contact inhibition. Then I made a Cell class for individual behavior
+     and a Tissue class to manage the group. I added mouse buttons to change the environment.
+     I also used a short sound for each spontaneous mutation.</p>
+  <p>The final shape is not programmed in advance. It emerges because every cell makes
+     local decisions and pushes against nearby cells. The mutation rate changes how quickly
+     the tissue develops. The final collapse is an artistic ending, not a biological prediction.</p>
+</main>
+</body>
+</html>
