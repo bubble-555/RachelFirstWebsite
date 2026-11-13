@@ -1,0 +1,44 @@
+* { box-sizing: border-box; }
+body { margin: 0; color: #121212; background: #f7f6f2; font-family: Arial, Helvetica, sans-serif; }
+main { max-width: 1080px; margin: 0 auto; padding: 40px 28px 28px; }
+.eyebrow, .section-label, .topbar, footer { font-size: 11px; font-weight: 700; letter-spacing: .16em; }
+h1 { font-size: clamp(45px,8vw,88px); letter-spacing: -.065em; margin: 15px 0 8px; line-height: .98; }
+.lead { color: #555; font-size: 18px; max-width: 700px; line-height: 1.55; margin-bottom: 35px; }
+.interaction { background: #fff; border: 2px solid #171717; }
+.topbar { display: flex; align-items: center; justify-content: space-between; padding: 14px 17px; border-bottom: 2px solid #171717; gap: 10px; }
+.topbar span { color: #888; font-size: 11px; font-weight: normal; letter-spacing: 0; }
+#game { line-height: 0; }
+#game canvas { width: 100% !important; height: auto !important; display: block; }
+.instructions { border-top: 2px solid #171717; padding: 18px; display: flex; gap: 18px; justify-content: space-between; flex-wrap: wrap; font-size: 12px; line-height: 1.7; }
+.instructions strong { display: inline-block; background: #111; color: white; padding: 0 6px; margin-right: 5px; }
+.content { border-top: 1px solid #bbb; margin-top: 58px; padding-top: 22px; display: grid; grid-template-columns: 230px 1fr; gap: 28px; }
+.section-label { color: #666; padding-top: 6px; }
+h2 { font-size: clamp(24px,3.5vw,36px); line-height: 1.12; letter-spacing: -.035em; margin: 0 0 18px; }
+p { line-height: 1.65; max-width: 720px; }
+.muted { color: #777; font-size: 13px; }
+.steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+.steps > div { border: 1px solid #ccc; padding: 18px 14px; background: #fff; }
+.steps b { font-size: 12px; }
+.steps p { font-size: 13px; color: #666; margin: 9px 0 0; }
+figure { margin: 0 0 24px; }
+figure img { width: 100%; height: auto; display: block; border: 1px solid #ddd; }
+figcaption { color: #777; font-size: 12px; margin-top: 8px; }
+.screenshots { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; }
+.placeholder { padding: 35px 18px; color: #888; background: #eee; text-align: center; font-size: 13px; line-height: 1.8; border: 1px dashed #bbb; }
+footer { border-top: 1px solid #bbb; color: #777; margin-top: 50px; padding-top: 24px; }
+@media(max-width:700px) { main {padding:24px 14px;} .content {grid-template-columns:1fr;gap:16px;margin-top:40px;} .steps {grid-template-columns:1fr;} .screenshots {grid-template-columns:1fr;} .instructions {display:grid;gap:5px;} }
+
+h3 { font-size: 17px; margin: 27px 0 8px; }
+.screenshots figcaption { line-height: 1.55; }
+
+.debug-note { border-left: 3px solid #111; background: #eeece7; padding: 5px 18px 11px; margin: 14px 0 28px; }
+.debug-note h3 { margin-top: 13px; }
+.debug-note p { margin: 9px 0; font-size: 14px; }
+
+/* Submission documentation flow chart */
+.system-diagram { display: flex; gap: 10px; align-items: stretch; margin: 18px 0; }
+.diagram-node { flex: 1; min-width: 0; background: #fff; border: 1px solid #bbb; padding: 14px 10px; display: flex; flex-direction: column; gap: 9px; }
+.diagram-node strong { font-size: 11px; letter-spacing: .05em; }
+.diagram-node span { font-size: 12px; color: #666; line-height: 1.4; }
+.diagram-arrow { align-self: center; font-size: 20px; color: #555; }
+@media (max-width: 700px) { .system-diagram { flex-direction: column; gap: 5px; } .diagram-arrow { transform: rotate(90deg); } }

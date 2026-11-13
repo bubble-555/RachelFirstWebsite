@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Don't Touch Me! — Interactive Prototype</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.11.13/lib/p5.min.js"></script>
+  <script src="https://unpkg.com/ml5@1/dist/ml5.min.js"></script>
+  <script src="sketch.js" defer></script>
+</head>
+<body>
+  <main>
+    <header>
+      <p class="eyebrow">P5.JS + ML5.JS · FIRST PROTOTYPE</p>
+      <h1>DON'T TOUCH ME!</h1>
+      <p class="lead">A tiny creature that likes your open hand — but runs away when you try to catch it.</p>
+    </header>
+
+    <section class="interaction" aria-label="Interactive creature experience">
+      <div class="topbar"><strong>LIVE EXPERIMENT</strong><span id="status">Preparing camera…</span></div>
+      <div id="game"></div>
+      <div class="instructions">
+        <span><strong>01</strong> Show an open hand → it approaches</span>
+        <span><strong>02</strong> Make a fist → it panics and escapes</span>
+        <span><strong>03</strong> Let go → it eventually returns</span>
+      </div>
+    </section>
+
+    <section class="content">
+      <div class="section-label">01 / CONCEPT</div>
+      <div>
+       
+<h2>Proposal</h2>
+
+<p>Don’t Touch Me! is an interactive experience that reacts to the human hand with a digital creature. The system uses a webcam and machine learning to detect the participant’s hand and turns it into an unpredictable relationship between human and nonhuman behavior.</p>
+
+<p>The creature is not like a normal UI element, which just does what it's told. Instead it resists control. When the participant reaches for it, it escapes. It returns slowly when the participant stops trying to control it. The work turns interaction into a playful negotiation, rather than direct control.</p>
+
+<h3>First prototype goal</h3>
+
+<p>The first prototype will be able to detect one hand and animate one creature that will move away from the hand when it gets close.</p>
+
+      </div>
+    </section>
+
+    <section class="content">
+      <div class="section-label">02 / INTERACTION LOGIC</div>
+      <div>
+        <h2>Three simple states</h2>
+        <div class="steps">
+          <div><b>OPEN HAND</b><p>Curiosity → slowly approach the hand.</p></div>
+          <div><b>FIST</b><p>Fear → freeze for a moment, then run off-screen.</p></div>
+          <div><b>NO HAND</b><p>Independence → wander, relax, and return.</p></div>
+        </div>
+        <p class="muted">Webcam → ml5.js HandPose (21 landmarks) → gesture estimate → p5.js animation</p>
+      </div>
+    </section>
+
+    <section class="content">
+      <div class="section-label">SYSTEM DIAGRAM</div>
+      <div>
+        <h2>How it works</h2>
+        <div class="system-diagram" aria-label="Webcam to ML5 HandPose to gesture recognition to creature behavior">
+          <div class="diagram-node"><strong>REAL HAND</strong><span>Open palm / Fist</span></div>
+          <span class="diagram-arrow" aria-hidden="true">→</span>
+          <div class="diagram-node"><strong>WEBCAM</strong><span>Video input</span></div>
+          <span class="diagram-arrow" aria-hidden="true">→</span>
+          <div class="diagram-node"><strong>ML5.JS</strong><span>21 hand points</span></div>
+          <span class="diagram-arrow" aria-hidden="true">→</span>
+          <div class="diagram-node"><strong>P5.JS</strong><span>Approach / Escape</span></div>
+        </div>
+        <p class="muted">The gestures are estimated from finger-joint distances, not trained as fixed images. The background does not need to be classified.</p>
+      </div>
+    </section>
+
+    <section class="content">
+      <div class="section-label">03 / IDEATION SKETCHES</div>
+      <div>
+        <h2>Early interaction drawings</h2>
+        <figure><img src="assets/ideation-sequence.jpg" alt="Hand-drawn three-panel storyboard: open hand, approach, fist makes creature escape"><figcaption>Sketch 01 — gesture-to-behavior sequence</figcaption></figure>
+        <figure><img src="assets/ideation-scene.jpg" alt="Hand drawing showing webcam, human hand and the tiny circular creature"><figcaption>Sketch 02 — camera and creature layout</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="content">
+      <div class="section-label">04 / DEVELOPMENT</div>
+      <div>
+        <h2>From failed detection to working interaction</h2>
+        <h3>Development 01 — Hand not detected</h3>
+        <p>In my first live test, the webcam successfully showed my hand, but the interface continued to report <strong>GESTURE: NO HAND</strong> and <strong>BEHAVIOR: WANDER</strong>, even when I held a fist clearly in front of the camera. The visual interface and video input worked, but the hand tracking did not yet produce usable results.</p>
+        <figure>
+          <img src="assets/prototype-no-hand.png" alt="Initial failed test: the camera preview clearly shows a clenched hand, while the system displays GESTURE: NO HAND and BEHAVIOR: WANDER">
+          <figcaption><strong>Test 01 — FAILED DETECTION.</strong> The fist is visible in the webcam preview, but the prototype still reads “NO HAND.” This screenshot records the original bug before the fix.</figcaption>
+        </figure>
+        <div class="debug-note">
+          <h3>Debugging log</h3>
+          <p><strong>Problem:</strong> A visible hand was not detected, so the creature kept wandering instead of reacting.</p>
+          <p><strong>What I checked:</strong> Because the camera preview was visible, camera permission and basic video capture were working. I focused on the HandPose model initialization and detection callback.</p>
+          <p><strong>Change:</strong> I moved the HandPose model initialization into p5.js <code>preload()</code>, started detection after the camera was created, and tested the gesture labels again.</p>
+          <p><strong>Result:</strong> The prototype began identifying both an open palm and a fist, allowing the creature to approach or enter its escape sequence.</p>
+        </div>
+        <h3>Development 02 — Gesture tests succeeded</h3>
+        <p>After fixing the detector setup, I tested the two main interactions separately. The next screenshots capture the recognized gestures and corresponding behavior states.</p>
+        <div class="screenshots">
+          <figure>
+            <img src="assets/prototype-open.png" alt="Successful open-hand test with the interface showing GESTURE OPEN HAND and BEHAVIOR APPROACH">
+            <figcaption><strong>Test 02 — OPEN HAND / APPROACH.</strong> The model recognizes an open hand and the creature approaches the palm.</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/prototype-fist.png" alt="Successful fist test with the interface showing GESTURE FIST and BEHAVIOR STARTLED">
+            <figcaption><strong>Test 03 — FIST / STARTLED.</strong> The model recognizes a fist and changes to STARTLED. The following animation sends it running off-screen.</figcaption>
+          </figure>
+        </div>
+        <h3>What worked</h3>
+        <p>Both intended gestures were recognized during testing. The open hand triggered <strong>APPROACH</strong>; making a fist triggered <strong>STARTLED</strong> and the escape sequence. The creature changes its behavior based on the participant's body, without any connected physical controller.</p>
+        <h3>Reflection / next iteration</h3>
+        <p>The prototype demonstrates a simple emotional relationship: an open palm feels inviting, while a closed fist feels threatening. Next, I want to make the creature more expressive and improve gesture recognition under different lighting conditions and hand angles.</p>
+        <p class="muted">Technical flow: webcam → ml5.js HandPose → hand landmark positions → open/fist gesture estimate → p5.js creature behavior.</p>
+      </div>
+    </section>
+    <footer>FIRST PROTOTYPE · P5.JS / ML5.JS / WEBCAM</footer>
+  </main>
+</body>
+</html>
